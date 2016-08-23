@@ -7,6 +7,12 @@ describe Enumerable do
 
   describe "#my_select" do
 
+    context "with non-enumerable object" do
+      it { expect { nil.my_select { |e| e.nil? } }.to raise_error NoMethodError }
+      it { expect { 99.my_select { |e| e.nil? } }.to raise_error NoMethodError }
+      it { expect { "hello".my_select { |e| e.nil? } }.to raise_error NoMethodError }
+    end
+
     context "given a call to my_select with an array" do
 
       it "returns an array" do
